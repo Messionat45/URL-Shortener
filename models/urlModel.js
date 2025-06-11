@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const userModel = require("./userModel.js");
 
 const urlSchema = new mongoose.Schema({
   longurl: {
@@ -10,6 +11,11 @@ const urlSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+  },
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "user",
   },
 });
 

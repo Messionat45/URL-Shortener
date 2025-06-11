@@ -1,4 +1,4 @@
-const urlModel = require("../models/urlModel");
+const urlModel = require("../../models/urlModel");
 
 const url_input = async (req, res) => {
   try {
@@ -20,7 +20,12 @@ const url_input = async (req, res) => {
         console.log("original url: ", url);
         console.log("shorten url: ", shortURL);
 
-        await urlModel.create({ longurl: url, shorturl: shortID });
+        const userId = req.loggedUser.userId;
+        await urlModel.create({
+          longurl: url,
+          shorturl: shortID,
+          userID: userId,
+        });
 
         return res.status(200).json({ URLLONG: shortURL });
       }
