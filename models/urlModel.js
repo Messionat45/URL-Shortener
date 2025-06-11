@@ -4,9 +4,12 @@ const urlSchema = new mongoose.Schema({
   longurl: {
     type: String,
     require: true,
+    unique: true,
   },
   shorturl: {
     type: String,
+    required: true,
+    unique: true,
   },
 });
 
