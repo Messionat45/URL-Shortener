@@ -13,10 +13,7 @@ const port = 5000;
 
 app.use(
   cors({
-    origin: [
-      "https://url-shortener-lpie.onrender.com",
-      "http://localhost:5000",
-    ],
+    origin: ["https://miniurl45.netlify.app/", "http://localhost:5500"],
     credentials: true,
   })
 );
