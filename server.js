@@ -13,7 +13,7 @@ const port = 5000;
 
 app.use(
   cors({
-    origin: ["https://miniurl45.netlify.app/", "http://localhost:5500"],
+    origin: ["https://miniurl45.netlify.app", "http://localhost:5500"],
     credentials: true,
   })
 );
