@@ -1,9 +1,9 @@
 const urlModel = require("../../models/urlModel");
-
+const beUrl = process.env.BE_URL || process.env.LOCAL_BE_URL;
 const url_input = async (req, res) => {
   try {
     const url = req.body.url;
-
+    console.log(url);
     if (url) {
       const dbdata = await urlModel.findOne({ longurl: url });
       if (dbdata) {
@@ -14,7 +14,7 @@ const url_input = async (req, res) => {
       } else if (!dbdata) {
         const { nanoid } = await import("nanoid");
         const shortID = nanoid(4);
-        const baseURL = "http://localhost:5000/s/";
+        const baseURL = `${beUrl}/s/`;
         const shortURL = baseURL + shortID;
 
         console.log("original url: ", url);

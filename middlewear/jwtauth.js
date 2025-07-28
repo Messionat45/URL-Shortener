@@ -3,16 +3,16 @@ const secretKey = process.env.JWT_SECRET;
 
 const auth = async (req, res, next) => {
   const jwtToken = req.cookies.token;
-
+  console.log("middlesware", jwtToken);
   if (!jwtToken)
     return res
       .status(200)
-      .json({ message: "No teken foeund need to login again" });
+      .json({ message: "No token found, u need to login again" });
 
   try {
     const jwtDecode = await jwt.verify(jwtToken, secretKey);
     console.log("authpage", jwtDecode);
-
+    console.log("login middleware succefully sent");
     req.loggedUser = jwtDecode;
     next();
   } catch (error) {

@@ -25,17 +25,19 @@ const login = async (req, res) => {
     const checkPass = await bcrypt.compare(userData.password, dbUser.password);
 
     if (checkPass) {
-      const jwtToken = await jwt.sign(
+      const jwtToken = jwt.sign(
         { userId: dbUser._id, username: dbUser.username },
         secretKey,
-        { expiresIn: 600000 }
+        { expiresIn: 60 * 60 * 1000 }
       );
 
       console.log(jwtToken);
 
       res.cookie("token", jwtToken, {
         httpOnly: true,
-        maxAge: 600000,
+        maxAge: 60 * 60 * 1000,
+        sameSite: "none",
+        secure: true,
       });
 
       return res.status(200).json({ message: " succesfully logged in" });
