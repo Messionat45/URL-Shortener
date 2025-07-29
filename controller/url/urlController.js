@@ -9,7 +9,8 @@ const url_input = async (req, res) => {
     if (url) {
       const dbdata = await urlModel.findOne({ longurl: url });
       if (dbdata) {
-        shorturl = dbdata.shorturl;
+        const baseURL = `${beUrl}/s/`;
+        shorturl = baseURL + dbdata.shorturl;
       } else if (!dbdata) {
         const { nanoid } = await import("nanoid");
         const shortID = nanoid(4);
