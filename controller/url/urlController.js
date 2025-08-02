@@ -7,7 +7,10 @@ const url_input = async (req, res) => {
     let shorturl;
 
     if (url) {
-      const dbdata = await urlModel.findOne({ longurl: url });
+      const dbdata = await urlModel.findOne({
+        userID: req.loggedUser.userId,
+        longurl: url,
+      });
       if (dbdata) {
         const baseURL = `${beUrl}/s/`;
         shorturl = baseURL + dbdata.shorturl;
