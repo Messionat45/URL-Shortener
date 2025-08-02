@@ -28,14 +28,14 @@ const login = async (req, res) => {
       const jwtToken = jwt.sign(
         { userId: dbUser._id, username: dbUser.username },
         secretKey,
-        { expiresIn: 60 * 60 * 1000 }
+        { expiresIn: "1h" }
       );
 
       console.log(jwtToken);
 
       res.cookie("token", jwtToken, {
         httpOnly: true,
-        maxAge: "1h",
+        maxAge: 60 * 60 * 1000,
         sameSite: "none",
         secure: true,
       });
